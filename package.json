@@ -1,0 +1,29 @@
+{
+  "name": "unity-n-animation",
+  "version": "0.0.1",
+  "description": "Animation helpers",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shadowmint/unity-n-animation.git"
+  },
+  "files": [
+    "index.js",
+    "scripts",
+    "src"
+  ],
+  "author": "douglas.linder@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shadowmint/unity-n-animation/issues"
+  },
+  "homepage": "https://github.com/shadowmint/unity-n-animation",
+  "scripts": {
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "dependencies": {
+    "mkdirp": "^0.5.1",
+    "ncp": "^2.0.0",
+    "unity-n-core": "github:shadowmint/unity-n-core#0.0.1"
+  }
+}
