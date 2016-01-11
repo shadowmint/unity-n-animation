@@ -8,8 +8,8 @@ namespace N.Package.Animation
     /// Using this class will spawn an AnimationData object on the scene.
     public class AnimationHandler : MonoBehaviour
     {
-        /// The set of registered animations managers
-        public List<IAnimationManager> managers = new List<IAnimationManager>();
+        /// The set of registered animations updaters
+        public List<IAnimationUpdater> updaters = new List<IAnimationUpdater>();
 
         /// The timer we use~
         public Timer timer = new Timer();
@@ -19,28 +19,28 @@ namespace N.Package.Animation
         {
             timer.OnUpdate((ev) =>
             {
-                foreach (var manager in managers)
+                foreach (var updater in updaters)
                 {
-                    manager.Update(timer.Step());
+                    updater.Update(timer.Step());
                 }
             });
         }
 
-        /// Add a manager
-        public void Add(IAnimationManager manager)
+        /// Add a updater
+        public void Add(IAnimationUpdater updater)
         {
-            if (!managers.Contains(manager))
+            if (!updaters.Contains(updater))
             {
-                managers.Add(manager);
+                updaters.Add(updater);
             }
         }
 
-        /// Remove a manager
-        public void Remove(IAnimationManager manager)
+        /// Remove a updater
+        public void Remove(IAnimationUpdater updater)
         {
-            if (managers.Contains(manager))
+            if (updaters.Contains(updater))
             {
-                managers.Remove(manager);
+                updaters.Remove(updater);
             }
         }
 
@@ -62,10 +62,10 @@ namespace N.Package.Animation
             return rtn.GetComponent<AnimationHandler>();
         }
 
-        /// Register a manager globally
-        public static void Register(IAnimationManager manager)
+        /// Register a updater globally
+        public static void Register(IAnimationUpdater updater)
         {
-            AnimationHandler.Get().Add(manager);
+            AnimationHandler.Get().Add(updater);
         }
     }
 }

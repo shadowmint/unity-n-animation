@@ -13,6 +13,12 @@ namespace N.Package.Animation.Animations
         /// Target position
         Vector3 position;
 
+        /// Target normal
+        Vector3 normal;
+
+        /// Target up vector
+        Vector3 up;
+
         public MoveTo(Vector3 position)
         {
             this.position = position;

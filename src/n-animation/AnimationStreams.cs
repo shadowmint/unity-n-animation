@@ -37,6 +37,12 @@ namespace N.Package.Animation
             }
         }
 
+        /// Clear all streams
+        public void ClearAll()
+        {
+            streams.Clear();
+        }
+
         /// Add an animation to this stream
         public void Add(TStream stream, IAnimation animation, bool createDefaultIfMissing = true)
         {
@@ -76,7 +82,7 @@ namespace N.Package.Animation
         }
 
         /// Update all held animations
-        public void Update(float delta, IAnimationManager manager)
+        public void Update(float delta, IAnimationManager<TStream> manager)
         {
             foreach (KeyValuePair<TStream, AnimationStream> entry in streams)
             {

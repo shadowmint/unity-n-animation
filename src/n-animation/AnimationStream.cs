@@ -62,7 +62,7 @@ namespace N.Package.Animation
         }
 
         /// Update this stream
-        public void Update(float delta, IAnimationManager manager)
+        public void Update<TStream>(float delta, IAnimationManager<TStream> manager)
         {
             UpdateAnimations(delta);
             RemoveCompleted(manager);
@@ -101,7 +101,7 @@ namespace N.Package.Animation
         }
 
         /// Remove completed animations from this stream
-        private void RemoveCompleted(IAnimationManager manager)
+        private void RemoveCompleted<TStream>(IAnimationManager<TStream> manager)
         {
             for (var i = 0; i < slots.Length; ++i)
             {

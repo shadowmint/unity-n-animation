@@ -5,7 +5,7 @@ using UnityEngine;
 namespace N.Package.Animation
 {
     /// The base class for any animation manager
-    public abstract class AnimationManagerBase<TStream> : IAnimationManager
+    public abstract class AnimationManagerBase<TStream> : IAnimationManager<TStream>, IAnimationUpdater
     {
         /// Event interface
         public N.Events Events { get { return events; } }
@@ -37,6 +37,12 @@ namespace N.Package.Animation
         public void Clear(TStream stream)
         {
             Streams.Clear(stream);
+        }
+
+        /// Clear all streams
+        public void ClearAll()
+        {
+            Streams.ClearAll();
         }
 
         /// Update each frame

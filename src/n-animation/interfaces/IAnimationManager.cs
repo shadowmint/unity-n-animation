@@ -4,12 +4,19 @@ using UnityEngine;
 namespace N.Package.Animation
 {
     /// A generic animation manager interface
-    public interface IAnimationManager
+    public interface IAnimationUpdater
+    {
+        /// Update animations
+        void Update(float delta);
+    }
+
+    /// A generic animation manager interface
+    public interface IAnimationManager<TStream>
     {
         /// Event interface
         N.Events Events { get; }
 
-        /// Update animations
-        void Update(float delta);
+        /// Return the streams for this manager
+        AnimationStreams<TStream> Streams { get; }
     }
 }
