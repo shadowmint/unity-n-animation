@@ -2,6 +2,7 @@
 using UnityEngine;
 using NUnit.Framework;
 using N.Package.Animation;
+using N.Package.Animation.Animations;
 using System.Collections.Generic;
 using N;
 
@@ -65,7 +66,7 @@ public class AnimationStreamTests : N.Tests.Test
 
         // after complete, can add
         curve.Item2.Complete = true;
-        stream.Update(1.0f, null);
+        stream.Update<Streams>(1.0f, null);
         Assert(stream.Add(fixture()));
 
         this.TearDown();
@@ -81,7 +82,7 @@ public class AnimationStreamTests : N.Tests.Test
 
         /// Expire first item
         curve.Item2.Complete = true;
-        stream.Update(1.0f, null);
+        stream.Update<Streams>(1.0f, null);
 
         this.TearDown();
     }
