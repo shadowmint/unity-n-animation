@@ -8,6 +8,9 @@ namespace N.Package.Animation
     {
         /// Update animations
         void Update(float delta);
+
+        /// Mark the updater as invalid
+        void Invalidate();
     }
 
     /// A generic animation manager interface
@@ -15,8 +18,5 @@ namespace N.Package.Animation
     {
         /// Event interface
         N.Events Events { get; }
-
-        /// Return the streams for this manager
-        AnimationStreams<TStream> Streams { get; }
     }
 }

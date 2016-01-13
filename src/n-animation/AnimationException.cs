@@ -15,7 +15,10 @@ namespace N.Package.Animation
         INVALID_DURATION,
 
         /// An attempt to configure an existing stream was made
-        STREAM_ALREADY_CONFIGURED
+        STREAM_ALREADY_CONFIGURED,
+
+        /// An attempt to use an invalid animation manager
+        INVALID_MANAGER
     }
 
     /// Custom Exception type

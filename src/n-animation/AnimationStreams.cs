@@ -61,9 +61,12 @@ namespace N.Package.Animation
         }
 
         /// Return true if any active animations in a stream
-        public bool Acitve(TStream stream)
+        public bool Active(TStream stream)
         {
-            if (streams.ContainsKey(stream)) { return streams[stream].active > 0; }
+            if (streams.ContainsKey(stream))
+            {
+                return streams[stream].active > 0;
+            }
             throw new AnimationException(AnimationErrors.INVALID_STREAM);
         }
 

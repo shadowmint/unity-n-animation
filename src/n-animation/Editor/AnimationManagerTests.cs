@@ -12,8 +12,7 @@ public class AnimationManagerTests : N.Tests.Test
     [Test]
     public void test_basic_working_animation()
     {
-        // Setup
-        AnimationManager.Default.Clear(Streams.STREAM_0);
+        this.TearDownAnimations();
         AnimationManager.Default.Configure(Streams.STREAM_0, AnimationStreamType.REJECT, 1);
 
         var blank = this.SpawnBlank();
@@ -22,17 +21,15 @@ public class AnimationManagerTests : N.Tests.Test
 
         int events = 0;
         AnimationManager.Default.Add(Streams.STREAM_0, anim, curve, blank);
-        EventHandler handler = (N.Event ep) =>
+        AnimationManager.Default.AddEventListener((N.Event ep) =>
         {
             ep.As<AnimationCompleteEvent>().Then((evp) =>
             {
                 events += 1;
             });
-        };
-        var foo = AnimationManager.Default.Events;
-        foo += handler;
+        });
 
-        var timer = Scene.FindComponent<AnimationHandler>().timer;
+        var timer = AnimationHandler.Default.timer;
 
         // Step
         timer.Force(0.5f);
@@ -51,8 +48,7 @@ public class AnimationManagerTests : N.Tests.Test
     [Test]
     public void test_basic_deferred_animation()
     {
-        // Setup
-        AnimationManager.Default.Clear(Streams.STREAM_0);
+        this.TearDownAnimations();
         AnimationManager.Default.Configure(Streams.STREAM_0, AnimationStreamType.DEFER, 1);
 
         var blank = this.SpawnBlank();
@@ -74,7 +70,7 @@ public class AnimationManagerTests : N.Tests.Test
             });
         });
 
-        var timer = Scene.FindComponent<AnimationHandler>().timer;
+        var timer = AnimationHandler.Default.timer;
 
         // Step
         timer.Force(1.0f);
@@ -90,10 +86,25 @@ public class AnimationManagerTests : N.Tests.Test
         TearDownAnimations();
     }
 
+    [Test]
+    public void test_invalid_manager_cant_be_used() {
+      this.TearDownAnimations();
+      AnimationManager.Default.Configure(Streams.STREAM_0, AnimationStreamType.DEFER, 1);
+      var manager = AnimationManager.Default;
+      Assert(!manager.Streams.Active(Streams.STREAM_0));
+      AnimationHandler.Reset();
+      try {
+        manager.Streams.Active(Streams.STREAM_0);
+        Unreachable();
+      }
+      catch(AnimationException error) {
+        Assert(error.code == AnimationErrors.INVALID_MANAGER);
+      }
+    }
+
     private void TearDownAnimations() {
         this.TearDown();
-        AnimationManager.Reset();
-        GameObject.DestroyImmediate(Scene.First<AnimationHandler>());
+        AnimationHandler.Reset();
     }
 }
 #endif
