@@ -18,5 +18,8 @@ namespace N.Package.Animation
 
         /// Return turn when the animation is complete
         bool Complete { get; }
+
+        /// Halt the animation early
+        void Halt();
     }
 }
