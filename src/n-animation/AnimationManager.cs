@@ -9,8 +9,8 @@ namespace N.Package.Animation
     public abstract class AnimationManagerBase<TStream> : IAnimationManager<TStream>, IAnimationUpdater
     {
         /// Event interface
-        public N.Package.Events.Events Events { get { return events; } }
-        private N.Package.Events.Events events = new N.Package.Events.Events();
+        public EventHandler Events { get { return events; } }
+        private EventHandler events = new EventHandler();
 
         /// Is this animation manager discarded and invalid?
         private bool valid;
@@ -126,8 +126,6 @@ namespace N.Package.Animation
                 return instance;
             }
         }
-
-
 
         /// Destroy default instance, mainly for tests and moving between scenes
         public static void Reset()

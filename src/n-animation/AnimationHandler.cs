@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using N;
+using N.Package.Events;
 
 namespace N.Package.Animation
 {
@@ -24,7 +24,7 @@ namespace N.Package.Animation
             timerComponent.transform.name = "Animation Timer";
             var tc = timerComponent.AddComponent<AnimationTimerComponent>();
             tc.handler = this;
-            timer.OnUpdate((ev) =>
+            timer.Events.AddEventHandler<TimerEvent>((ev) =>
             {
                 foreach (var updater in updaters)
                 {

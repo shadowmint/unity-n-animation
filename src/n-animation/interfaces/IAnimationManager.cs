@@ -1,5 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using N.Package.Events;
 
 namespace N.Package.Animation
 {
@@ -17,6 +18,6 @@ namespace N.Package.Animation
     public interface IAnimationManager<TStream>
     {
         /// Event interface
-        N.Package.Events.Events Events { get; }
+        EventHandler Events { get; }
     }
 }
