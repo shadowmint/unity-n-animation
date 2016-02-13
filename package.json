@@ -1,6 +1,6 @@
 {
   "name": "unity-n-animation",
-  "version": "0.0.3",
+  "version": "0.0.2",
   "description": "Animation helpers",
   "main": "index.js",
   "repository": {
