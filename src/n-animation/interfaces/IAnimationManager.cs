@@ -17,6 +17,6 @@ namespace N.Package.Animation
     public interface IAnimationManager<TStream>
     {
         /// Event interface
-        N.Events Events { get; }
+        N.Package.Events.Events Events { get; }
     }
 }

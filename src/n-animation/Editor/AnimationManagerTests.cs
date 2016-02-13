@@ -21,13 +21,7 @@ public class AnimationManagerTests : N.Tests.Test
 
         int events = 0;
         AnimationManager.Default.Add(Streams.STREAM_0, anim, curve, blank);
-        AnimationManager.Default.AddEventListener((N.Event ep) =>
-        {
-            ep.As<AnimationCompleteEvent>().Then((evp) =>
-            {
-                events += 1;
-            });
-        });
+        AnimationManager.Default.AddEventHandler((ep) => { events += 1; });
 
         var timer = AnimationHandler.Default.timer;
 
@@ -62,13 +56,7 @@ public class AnimationManagerTests : N.Tests.Test
         int events = 0;
         AnimationManager.Default.Add(Streams.STREAM_0, anim, curve, blank);
         AnimationManager.Default.Add(Streams.STREAM_0, anim2, curve2, blank2);
-        AnimationManager.Default.AddEventListener((N.Event ep) =>
-        {
-            ep.As<AnimationCompleteEvent>().Then((evp) =>
-            {
-                events += 1;
-            });
-        });
+        AnimationManager.Default.AddEventHandler((ep) => { events += 1; });
 
         var timer = AnimationHandler.Default.timer;
 

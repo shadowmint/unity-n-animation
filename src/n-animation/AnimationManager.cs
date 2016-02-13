@@ -1,5 +1,6 @@
 using N.Package.Animation.Animations;
 using N.Package.Animation.Targets;
+using N.Package.Events;
 using UnityEngine;
 
 namespace N.Package.Animation
@@ -8,8 +9,8 @@ namespace N.Package.Animation
     public abstract class AnimationManagerBase<TStream> : IAnimationManager<TStream>, IAnimationUpdater
     {
         /// Event interface
-        public N.Events Events { get { return events; } }
-        private N.Events events = new Events();
+        public N.Package.Events.Events Events { get { return events; } }
+        private N.Package.Events.Events events = new N.Package.Events.Events();
 
         /// Is this animation manager discarded and invalid?
         private bool valid;
@@ -68,10 +69,10 @@ namespace N.Package.Animation
         }
 
         /// Bind a standard event handler
-        public void AddEventListener(EventHandler handler)
+        public void AddEventHandler(EventHandler<AnimationCompleteEvent> handler)
         {
             Validate();
-            events += handler;
+            events.AddEventHandler(handler);
         }
 
         /// Mark this manager as invalid; it can no longer be used

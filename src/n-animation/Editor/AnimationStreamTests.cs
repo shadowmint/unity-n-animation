@@ -20,6 +20,7 @@ public class FakeCurve : IAnimationCurve
     public float Delta { get; set; }
     public float Value { get; set; }
     public bool Complete { get; set; }
+    public void Halt() {}
 }
 
 public class FakeTarget : IAnimationTarget
