@@ -1,4 +1,4 @@
-# n-anima tion
+# n-animation
 
 ![block animating...](https://raw.github.com/shadowmint/unity-n-animation/master/media/example.gif)
 
