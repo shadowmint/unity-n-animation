@@ -1,4 +1,6 @@
-# n-animation
+# n-anima tion
+
+![block animating...](https://raw.github.com/shadowmint/unity-n-animation/master/media/example.gif)
 
 The basic idea behind this package is that you want to run a series of minor
 animations and effects, and, occasionally, wait until some of them are done

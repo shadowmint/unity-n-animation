@@ -23,4 +23,9 @@ public class MoveGroupToTarget : TriggeredAnimationBase
             new TargetByComponent<MoveGroupMarker>()
         );
     }
+
+    public void Trigger()
+    {
+        active = true;
+    }
 }

@@ -1,6 +1,6 @@
 {
   "name": "unity-n-animation",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Animation helpers",
   "main": "index.js",
   "repository": {
@@ -24,6 +24,7 @@
   "dependencies": {
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
-    "unity-n-core": "github:shadowmint/unity-n-core#0.0.2"
+    "unity-n-core": "github:shadowmint/unity-n-core#0.0.3",
+    "unity-n-events": "github:shadowmint/unity-n-events#0.0.1"
   }
 }
