@@ -10,15 +10,24 @@ namespace N.Package.Animation
     {
         /// Event interface
         public EventHandler Events { get { return events; } }
-        private EventHandler events = new EventHandler();
+        private EventHandler events;
 
         /// Is this animation manager discarded and invalid?
         private bool valid;
+
+        /// Register self on the animation input handler and set events
+        protected AnimationManagerBase(EventHandler events)
+        {
+            valid = true;
+            this.events = events;
+            AnimationHandler.Default.Add(this);
+        }
 
         /// Register self on the animation input handler
         protected AnimationManagerBase()
         {
             valid = true;
+            events = new EventHandler();
             AnimationHandler.Default.Add(this);
         }
 
