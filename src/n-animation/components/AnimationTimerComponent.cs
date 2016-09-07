@@ -15,7 +15,7 @@ namespace N.Package.Animation
         {
             if (handler != null)
             {
-                handler.timer.Step();
+                handler.Update();
             }
         }
     }

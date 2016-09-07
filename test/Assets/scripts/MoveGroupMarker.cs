@@ -1,4 +1,5 @@
 using UnityEngine;
 
-public class MoveGroupMarker : MonoBehaviour {
+public class MoveGroupMarker : MonoBehaviour
+{
 }

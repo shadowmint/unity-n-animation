@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using N.Package.Animation;
+using N.Package.Core;
 
 namespace N.Package.Animation.Targets
 {

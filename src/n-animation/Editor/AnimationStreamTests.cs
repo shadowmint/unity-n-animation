@@ -5,6 +5,8 @@ using N.Package.Animation;
 using N.Package.Animation.Animations;
 using System.Collections.Generic;
 using N;
+using N.Package.Core;
+using N.Package.Core.Tests;
 
 public class FakeAnimation : IAnimation
 {
@@ -26,7 +28,7 @@ public class FakeCurve : IAnimationCurve
 public class FakeTarget : IAnimationTarget
 {
     GameObject instance;
-    public FakeTarget(N.Tests.Test test)
+    public FakeTarget(TestCase test)
     {
         instance = test.SpawnBlank();
     }
@@ -37,7 +39,7 @@ public class FakeTarget : IAnimationTarget
     }
 }
 
-public class AnimationStreamTests : N.Tests.Test
+public class AnimationStreamTests : TestCase
 {
     public IAnimation fixture()
     {

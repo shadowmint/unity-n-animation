@@ -2,22 +2,23 @@ using UnityEngine;
 
 public abstract class TriggeredAnimationBase : MonoBehaviour
 {
-    public bool active = false;
+  public bool active = false;
 
-    public void Start()
+  public void Start()
+  {
+    ConfigureStream();
+  }
+
+  public void Update()
+  {
+    if (active)
     {
-        ConfigureStream();
+      active = false;
+      StartAnimation();
     }
+  }
 
-    public void Update()
-    {
-        if (active) {
-          active = false;
-          StartAnimation();
-        }
-    }
+  public abstract void StartAnimation();
 
-    public abstract void StartAnimation();
-
-    public abstract void ConfigureStream();
+  public abstract void ConfigureStream();
 }

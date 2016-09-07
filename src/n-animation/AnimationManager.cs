@@ -1,7 +1,8 @@
+using System;
 using N.Package.Animation.Animations;
 using N.Package.Animation.Targets;
-using N.Package.Events;
 using UnityEngine;
+using EventHandler = N.Package.Events.EventHandler;
 
 namespace N.Package.Animation
 {
@@ -9,25 +10,25 @@ namespace N.Package.Animation
     public abstract class AnimationManagerBase<TStream> : IAnimationManager<TStream>, IAnimationUpdater
     {
         /// Event interface
-        public EventHandler Events { get { return events; } }
-        private EventHandler events;
+        public EventHandler Events { get { return _events; } }
+        private EventHandler _events;
 
         /// Is this animation manager discarded and invalid?
-        private bool valid;
+        private bool _valid;
 
         /// Register self on the animation input handler and set events
         protected AnimationManagerBase(EventHandler events)
         {
-            valid = true;
-            this.events = events;
+            _valid = true;
+            _events = events;
             AnimationHandler.Default.Add(this);
         }
 
         /// Register self on the animation input handler
         protected AnimationManagerBase()
         {
-            valid = true;
-            events = new EventHandler();
+            _valid = true;
+            _events = new EventHandler();
             AnimationHandler.Default.Add(this);
         }
 
@@ -78,16 +79,16 @@ namespace N.Package.Animation
         }
 
         /// Bind a standard event handler
-        public void AddEventHandler(EventHandler<AnimationCompleteEvent> handler)
+        public void AddEventHandler(Action<AnimationCompleteEvent> handler)
         {
             Validate();
-            events.AddEventHandler(handler);
+            _events.AddEventHandler(handler);
         }
 
         /// Mark this manager as invalid; it can no longer be used
         private void Validate()
         {
-            if (!valid)
+            if (!_valid)
             {
                 throw new AnimationException(AnimationErrors.INVALID_MANAGER);
             }
@@ -96,7 +97,7 @@ namespace N.Package.Animation
         /// Mark this manager as invalid for future use
         public void Invalidate()
         {
-            valid = false;
+            _valid = false;
         }
 
         /// Return the collections of animation streams
