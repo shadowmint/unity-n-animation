@@ -4,20 +4,20 @@ using N.Package.Events;
 
 namespace N.Package.Animation
 {
-    /// A generic animation manager interface
-    public interface IAnimationUpdater
-    {
-        /// Update animations
-        void Update(float delta);
+  /// A generic animation manager interface
+  public interface IAnimationUpdater
+  {
+    /// Update animations
+    void Update(float delta);
 
-        /// Mark the updater as invalid
-        void Invalidate();
-    }
+    /// Mark the updater as invalid
+    void Invalidate();
+  }
 
-    /// A generic animation manager interface
-    public interface IAnimationManager<TStream>
-    {
-        /// Event interface
-        EventHandler Events { get; }
-    }
+  /// A generic animation manager interface
+  public interface IAnimationManager<TStream>
+  {
+    /// Event interface
+    EventHandler Events { get; }
+  }
 }

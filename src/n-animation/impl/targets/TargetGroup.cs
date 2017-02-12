@@ -4,26 +4,23 @@ using System.Linq;
 
 namespace N.Package.Animation.Targets
 {
-    public class TargetGroup : IAnimationTarget
+  public class TargetGroup : IAnimationTarget
+  {
+    private readonly GameObject[] targets;
+
+    public TargetGroup(IEnumerable<GameObject> targets)
     {
-        private GameObject[] targets;
-
-        public TargetGroup(IEnumerable<GameObject> targets)
-        {
-            this.targets = targets.ToList().ToArray();
-        }
-
-        public TargetGroup(GameObject[] targets)
-        {
-            this.targets = targets;
-        }
-
-        public IEnumerable<GameObject> GameObjects()
-        {
-            foreach (var target in targets)
-            {
-                yield return target;
-            }
-        }
+      this.targets = targets.ToArray();
     }
+
+    public TargetGroup(GameObject[] targets)
+    {
+      this.targets = targets;
+    }
+
+    public IEnumerable<GameObject> GameObjects()
+    {
+      return targets;
+    }
+  }
 }

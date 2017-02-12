@@ -9,18 +9,18 @@ namespace N.Package.Animation
   public class AnimationHandler
   {
     /// The set of registered animations updaters
-    public List<IAnimationUpdater> updaters = new List<IAnimationUpdater>();
+    public List<IAnimationUpdater> Updaters = new List<IAnimationUpdater>();
 
     /// Associated game object
-    private GameObject timerComponent;
+    private readonly GameObject _timerComponent;
 
     /// Create a new instance with a new timer component
     public AnimationHandler()
     {
-      timerComponent = new GameObject();
-      timerComponent.transform.name = "Animation Timer";
-      var tc = timerComponent.AddComponent<AnimationTimerComponent>();
-      tc.handler = this;
+      _timerComponent = new GameObject();
+      _timerComponent.transform.name = "Animation Timer";
+      var tc = _timerComponent.AddComponent<AnimationTimerComponent>();
+      tc.Handler = this;
     }
 
     public void Update()
@@ -30,7 +30,7 @@ namespace N.Package.Animation
 
     public void Update(float delta)
     {
-      foreach (var updater in updaters)
+      foreach (var updater in Updaters)
       {
         updater.Update(delta);
       }
@@ -39,18 +39,18 @@ namespace N.Package.Animation
     /// Add a updater
     public void Add(IAnimationUpdater updater)
     {
-      if (!updaters.Contains(updater))
+      if (!Updaters.Contains(updater))
       {
-        updaters.Add(updater);
+        Updaters.Add(updater);
       }
     }
 
     /// Remove a updater
     public void Remove(IAnimationUpdater updater)
     {
-      if (updaters.Contains(updater))
+      if (Updaters.Contains(updater))
       {
-        updaters.Remove(updater);
+        Updaters.Remove(updater);
       }
     }
 
@@ -73,12 +73,12 @@ namespace N.Package.Animation
       if (_instance != null)
       {
         AnimationManager.Reset();
-        foreach (var updater in AnimationHandler._instance.updaters)
+        foreach (var updater in AnimationHandler._instance.Updaters)
         {
           updater.Invalidate();
         }
 #if UNITY_EDITOR
-        GameObject.DestroyImmediate(_instance.timerComponent);
+        GameObject.DestroyImmediate(_instance._timerComponent);
 #else
         GameObject.Destroy(instance.timerComponent);
 #endif
