@@ -80,7 +80,7 @@ namespace N.Package.Animation
 #if UNITY_EDITOR
         GameObject.DestroyImmediate(_instance._timerComponent);
 #else
-        GameObject.Destroy(instance.timerComponent);
+        GameObject.Destroy(_instance._timerComponent);
 #endif
         _instance = null;
       }
