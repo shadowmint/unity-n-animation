@@ -1,3 +1,4 @@
+using N.Package.Animation.Animations;
 using System.Collections.Generic;
 
 namespace N.Package.Animation
@@ -52,13 +53,14 @@ namespace N.Package.Animation
         Slots[slot] = animation;
         Active += 1;
       }
-      else if (Type == AnimationStreamType.Defer)
+      else switch (Type)
       {
-        Deferred.Enqueue(animation);
-      }
-      else if (Type == AnimationStreamType.Reject)
-      {
-        rtn = false;
+        case AnimationStreamType.Defer:
+          Deferred.Enqueue(animation);
+          break;
+        case AnimationStreamType.Reject:
+          rtn = false;
+          break;
       }
       return rtn;
     }
@@ -94,11 +96,9 @@ namespace N.Package.Animation
       var count = 0;
       for (var i = 0; (count < Active) && (i < Slots.Length); ++i)
       {
-        if (Slots[i] != null)
-        {
-          Slots[i].AnimationUpdate(delta);
-          count += 1;
-        }
+        if (Slots[i] == null) continue;
+        Slots[i].AnimationUpdate(delta);
+        count += 1;
       }
     }
 
@@ -109,27 +109,20 @@ namespace N.Package.Animation
       {
         if (Slots[i] == null) continue;
         if (!Slots[i].AnimationCurve.Complete) continue;
-
-        var animation = Slots[i];
-        var ep = new AnimationCompleteEvent() {Animation = animation};
+        var ep = new AnimationCompleteEvent() {Animation = Slots[i]};
         Slots[i] = null;
         Active -= 1;
-
-        // Trigger global event
         if (manager != null) // Eg. in tests.
         {
           manager.Events.Trigger(ep);
         }
-
-        // Trigger local event
-        animation.EventHandler.Trigger(ep);
       }
     }
 
     /// Check if we have any deferred items
     private bool AnyDeferredItems()
     {
-      bool rtn = false;
+      var rtn = false;
       if (Deferred != null)
       {
         rtn = Deferred.Count > 0;

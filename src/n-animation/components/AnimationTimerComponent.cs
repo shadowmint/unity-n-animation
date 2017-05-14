@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using N;
 
 namespace N.Package.Animation
 {

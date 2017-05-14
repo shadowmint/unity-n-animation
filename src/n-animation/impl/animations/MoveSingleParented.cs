@@ -5,7 +5,7 @@ using UnityEngine;
 namespace N.Package.Animation.Animations
 {
   /// Move a target towards a fixed position, given that we're in local space
-  public class MoveSingleParented : AnimationBase, IAnimation
+  public class MoveSingleParented : IAnimation
   {
     /// Initialized original state yet?
     private bool _initialized;
@@ -45,7 +45,7 @@ namespace N.Package.Animation.Animations
         _origin = target.transform.localPosition;
         _rotation = target.transform.localRotation;
       }
-      target.transform.localPosition = Vector3.Lerp(_origin, this._target, AnimationCurve.Value);
+      target.transform.localPosition = Vector3.Lerp(_origin, _target, AnimationCurve.Value);
       target.transform.localRotation = Quaternion.Lerp(_rotation, _targetRotation, AnimationCurve.Value);
     }
   }

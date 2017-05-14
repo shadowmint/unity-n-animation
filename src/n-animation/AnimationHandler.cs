@@ -70,20 +70,19 @@ namespace N.Package.Animation
     /// Reset the global instance
     public static void Reset()
     {
-      if (_instance != null)
+      if (_instance == null) return;
+
+      AnimationManager.Reset();
+      foreach (var updater in AnimationHandler._instance.Updaters)
       {
-        AnimationManager.Reset();
-        foreach (var updater in AnimationHandler._instance.Updaters)
-        {
-          updater.Invalidate();
-        }
-#if UNITY_EDITOR
-        GameObject.DestroyImmediate(_instance._timerComponent);
-#else
-        GameObject.Destroy(_instance._timerComponent);
-#endif
-        _instance = null;
+        updater.Invalidate();
       }
+#if UNITY_EDITOR
+      GameObject.DestroyImmediate(_instance._timerComponent);
+#else
+      GameObject.Destroy(_instance._timerComponent);
+#endif
+      _instance = null;
     }
   }
 }

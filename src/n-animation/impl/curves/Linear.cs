@@ -4,7 +4,7 @@ namespace N.Package.Animation.Curves
 {
   public class Linear : CurveBase, IAnimationCurve
   {
-    private readonly float _duration;
+    private float _duration;
 
     public Linear(float duration)
     {

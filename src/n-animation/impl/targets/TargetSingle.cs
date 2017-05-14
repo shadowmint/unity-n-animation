@@ -10,7 +10,7 @@ namespace N.Package.Animation.Targets
 
     public TargetSingle(GameObject target)
     {
-      this._target = target;
+      _target = target;
     }
 
     public IEnumerable<GameObject> GameObjects()

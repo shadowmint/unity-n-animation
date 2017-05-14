@@ -5,14 +5,13 @@ using UnityEngine;
 namespace N.Package.Animation.Animations
 {
   /// Move a target towards a fixed position
-  public class MoveTo : AnimationBase, IAnimation
+  public class MoveTo : IAnimation
   {
-
     /// Origin points of all game objects
-    private readonly Dictionary<GameObject, Vector3> _origins;
+    readonly Dictionary<GameObject, Vector3> _origins;
 
     /// Target position
-    private readonly Vector3 _position;
+    readonly Vector3 _position;
 
     public MoveTo(Vector3 position)
     {

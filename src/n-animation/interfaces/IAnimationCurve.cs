@@ -16,7 +16,7 @@ namespace N.Package.Animation
     /// The current value of the curve, given Elapsed and Remaining.
     float Value { get; }
 
-    /// Return true when the animation is complete
+    /// Return turn when the animation is complete
     bool Complete { get; }
 
     /// Halt the animation early

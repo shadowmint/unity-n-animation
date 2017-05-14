@@ -1,3 +1,4 @@
+using N.Package.Animation.Animations;
 using System.Collections.Generic;
 
 namespace N.Package.Animation
@@ -92,7 +93,7 @@ namespace N.Package.Animation
     /// Update all held animations
     public void Update(float delta, IAnimationManager<TStream> manager)
     {
-      foreach (var entry in _streams)
+      foreach (KeyValuePair<TStream, AnimationStream> entry in _streams)
       {
         entry.Value.Update(delta, manager);
       }

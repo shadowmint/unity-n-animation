@@ -5,7 +5,7 @@ using UnityEngine;
 namespace N.Package.Animation.Animations
 {
   /// Move a target towards a fixed position
-  public class MoveSingle : AnimationBase, IAnimation
+  public class MoveSingle : IAnimation
   {
     /// Initialized original state yet?
     private bool _initialized;
@@ -24,8 +24,8 @@ namespace N.Package.Animation.Animations
 
     public MoveSingle(Vector3 target, Quaternion targetRotation)
     {
-      this._target = target;
-      this._targetRotation = targetRotation;
+      _target = target;
+      _targetRotation = targetRotation;
       _initialized = false;
     }
 
@@ -45,7 +45,7 @@ namespace N.Package.Animation.Animations
         _origin = target.transform.position;
         _rotation = target.transform.rotation;
       }
-      target.transform.position = Vector3.Lerp(_origin, this._target, AnimationCurve.Value);
+      target.transform.position = Vector3.Lerp(_origin, _target, AnimationCurve.Value);
       target.transform.rotation = Quaternion.Lerp(_rotation, _targetRotation, AnimationCurve.Value);
     }
   }

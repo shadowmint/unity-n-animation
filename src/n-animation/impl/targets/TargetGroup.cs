@@ -6,21 +6,21 @@ namespace N.Package.Animation.Targets
 {
   public class TargetGroup : IAnimationTarget
   {
-    private readonly GameObject[] targets;
+    private readonly GameObject[] _targets;
 
     public TargetGroup(IEnumerable<GameObject> targets)
     {
-      this.targets = targets.ToArray();
+      _targets = targets.ToArray();
     }
 
     public TargetGroup(GameObject[] targets)
     {
-      this.targets = targets;
+      _targets = targets;
     }
 
     public IEnumerable<GameObject> GameObjects()
     {
-      return targets;
+      return _targets;
     }
   }
 }
